@@ -1,4 +1,6 @@
 class Renderer {
+    // canvas:              object ({id: __, width: __, height: __})
+    // num_curve_sections:  int
     constructor(canvas, num_curve_sections) {
         this.canvas = document.getElementById(canvas.id);
         this.canvas.width = canvas.width;
@@ -8,11 +10,13 @@ class Renderer {
         this.num_curve_sections = num_curve_sections;
     }
 
+    // n:  int
     setNumCurveSections(n) {
         this.num_curve_sections = n;
         this.drawSlide(this.slide_idx);
     }
     
+    // slide_idx:  int
     drawSlide(slide_idx) {
         this.slide_idx = slide_idx;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -20,35 +24,62 @@ class Renderer {
 
         switch (this.slide_idx) {
             case 0:
-                this.drawRectangle(framebuffer);
+                this.drawSlide0(framebuffer);
                 break;
             case 1:
-                this.drawCirle(framebuffer);
+                this.drawSlide1(framebuffer);
                 break;
             case 2:
-                this.drawBezierCurve(framebuffer);
+                this.drawSlide2(framebuffer);
                 break;
             case 3:
-                this.drawName(framebuffer);
+                this.drawSlide3(framebuffer);
                 break;
         }
 
         this.ctx.putImageData(framebuffer, 0, 0);
     }
 
-    drawRectangle(framebuffer) {
-        console.log("Draw Rectangle");
+    // framebuffer:  canvas ctx image data
+    drawSlide0(framebuffer) {
+
     }
 
-    drawCirle(framebuffer) {
+    // framebuffer:  canvas ctx image data
+    drawSlide1(framebuffer) {
+
+    }
+
+    // framebuffer:  canvas ctx image data
+    drawSlide2(framebuffer) {
+
+    }
+
+    // framebuffer:  canvas ctx image data
+    drawSlide3(framebuffer) {
+
+    }
+
+    // left_bottom:  object ({x: __, y: __})
+    // right_top:    object ({x: __, y: __})
+    // framebuffer:  canvas ctx image data
+    drawRectangle(left_bottom, right_top, framebuffer) {
+        
+    }
+
+    // center:       object ({x: __, y: __})
+    // radius:       int
+    // framebuffer:  canvas ctx image data
+    drawCirle(center, radius, framebuffer) {
         console.log("Draw Circle");
     }
 
-    drawBezierCurve(framebuffer) {
+    // pt0:          object ({x: __, y: __})
+    // pt1:          object ({x: __, y: __})
+    // pt2:          object ({x: __, y: __})
+    // pt3:          object ({x: __, y: __})
+    // framebuffer:  canvas ctx image data
+    drawBezierCurve(pt0, pt1, pt2, pt3, framebuffer) {
         console.log("Draw Bezier Curve");
-    }
-
-    drawName(framebuffer) {
-        console.log("Draw Name");
     }
 };
