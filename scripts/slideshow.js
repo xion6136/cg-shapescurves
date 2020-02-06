@@ -17,16 +17,20 @@ function init() {
                 "Name"
             ],
             slide_idx: 0,
-            curve_sections: 12
+            curve_sections: 12,
+            show_points: false
         },
         watch: {
             curve_sections: function(new_value) {
                 this.renderer.setNumCurveSections(parseInt(new_value, 10));
+            },
+            show_points: function(new_value) {
+                this.renderer.showPoints(new_value);
             }
         }
     })
 
-    app.renderer = new Renderer(app.view, app.curve_sections);
+    app.renderer = new Renderer(app.view, app.curve_sections, app.show_points);
     app.renderer.drawSlide(app.slide_idx);
 }
 

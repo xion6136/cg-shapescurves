@@ -1,19 +1,25 @@
 class Renderer {
     // canvas:              object ({id: __, width: __, height: __})
     // num_curve_sections:  int
-    constructor(canvas, num_curve_sections) {
+    constructor(canvas, num_curve_sections, show_points_flag) {
         this.canvas = document.getElementById(canvas.id);
         this.canvas.width = canvas.width;
         this.canvas.height = canvas.height;
         this.ctx = this.canvas.getContext('2d');
         this.slide_idx = 0;
         this.num_curve_sections = num_curve_sections;
+        this.show_points = show_points_flag;
     }
 
     // n:  int
     setNumCurveSections(n) {
         this.num_curve_sections = n;
         this.drawSlide(this.slide_idx);
+    }
+
+    // flag:  bool
+    showPoints(flag) {
+        this.show_points = flag;
     }
     
     // slide_idx:  int

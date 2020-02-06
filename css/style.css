@@ -82,7 +82,7 @@ p, label, input, output {
     flex-flow: row;
     align-items: center;
     justify-content: flex-start;
-    width: 350px;
+    width: 550px;
     height: 30px;
 }
 

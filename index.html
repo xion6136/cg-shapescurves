@@ -26,7 +26,10 @@
             <div id="ui">
                 <label for="sections">Curve Sections: </label>
                 <input id="sections" type="range" min="4" max="36" step="2" v-model="curve_sections" />
-                <output id="section_out">{{ curve_sections }}</span>
+                <output id="section_out">{{ curve_sections }}</output>
+                <div style="width:35px;"></div>
+                <label for="show_points">Show Point Data</label>
+                <input id="show_points" type="checkbox" v-model="show_points" />
             </div>
         </div>
     </div>
