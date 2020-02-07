@@ -68,24 +68,36 @@ class Renderer {
 
     // left_bottom:  object ({x: __, y: __})
     // right_top:    object ({x: __, y: __})
+    // color:        array of int [R, G, B, A]
     // framebuffer:  canvas ctx image data
-    drawRectangle(left_bottom, right_top, framebuffer) {
+    drawRectangle(left_bottom, right_top, color, framebuffer) {
         
     }
 
     // center:       object ({x: __, y: __})
     // radius:       int
+    // color:        array of int [R, G, B, A]
     // framebuffer:  canvas ctx image data
-    drawCirle(center, radius, framebuffer) {
-        console.log("Draw Circle");
+    drawCirle(center, radius, color, framebuffer) {
+        
     }
 
     // pt0:          object ({x: __, y: __})
     // pt1:          object ({x: __, y: __})
     // pt2:          object ({x: __, y: __})
     // pt3:          object ({x: __, y: __})
+    // color:        array of int [R, G, B, A]
     // framebuffer:  canvas ctx image data
-    drawBezierCurve(pt0, pt1, pt2, pt3, framebuffer) {
-        console.log("Draw Bezier Curve");
+    drawBezierCurve(pt0, pt1, pt2, pt3, color, framebuffer) {
+        
+    }
+
+    // pt0:          object ({x: __, y: __})
+    // pt1:          object ({x: __, y: __})
+    // color:        array of int [R, G, B, A]
+    // framebuffer:  canvas ctx image data
+    drawLine(pt0, pt1, color, framebuffer)
+    {
+        // code from class here
     }
 };
