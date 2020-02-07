@@ -98,6 +98,10 @@ p, label, input, output {
     margin: 0px 10px;
 }
 
+.slide_arrow:active {
+    opacity: 0.65;
+}
+
 .spacer {
     height: 10px;
 }
