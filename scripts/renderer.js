@@ -20,6 +20,7 @@ class Renderer {
     // flag:  bool
     showPoints(flag) {
         this.show_points = flag;
+        this.drawSlide(this.slide_idx);
     }
     
     // slide_idx:  int
@@ -78,7 +79,7 @@ class Renderer {
     // radius:       int
     // color:        array of int [R, G, B, A]
     // framebuffer:  canvas ctx image data
-    drawCirle(center, radius, color, framebuffer) {
+    drawCircle(center, radius, color, framebuffer) {
         
     }
 
