@@ -27,7 +27,6 @@ class Renderer {
     drawSlide(slide_idx) {
         this.slide_idx = slide_idx;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        let framebuffer = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
 
         switch (this.slide_idx) {
             case 0:
@@ -43,43 +42,41 @@ class Renderer {
                 this.drawSlide3(framebuffer);
                 break;
         }
-
-        this.ctx.putImageData(framebuffer, 0, 0);
     }
 
-    // framebuffer:  canvas ctx image data
-    drawSlide0(framebuffer) {
+    // ctx:          canvas context
+    drawSlide0(ctx) {
         
     }
 
-    // framebuffer:  canvas ctx image data
-    drawSlide1(framebuffer) {
+    // ctx:          canvas context
+    drawSlide1(ctx) {
 
     }
 
-    // framebuffer:  canvas ctx image data
-    drawSlide2(framebuffer) {
+    // ctx:          canvas context
+    drawSlide2(ctx) {
 
     }
 
-    // framebuffer:  canvas ctx image data
-    drawSlide3(framebuffer) {
+    // ctx:          canvas context
+    drawSlide3(ctx) {
 
     }
 
     // left_bottom:  object ({x: __, y: __})
     // right_top:    object ({x: __, y: __})
     // color:        array of int [R, G, B, A]
-    // framebuffer:  canvas ctx image data
-    drawRectangle(left_bottom, right_top, color, framebuffer) {
+    // ctx:          canvas context
+    drawRectangle(left_bottom, right_top, color, ctx) {
         
     }
 
     // center:       object ({x: __, y: __})
     // radius:       int
     // color:        array of int [R, G, B, A]
-    // framebuffer:  canvas ctx image data
-    drawCircle(center, radius, color, framebuffer) {
+    // ctx:          canvas context
+    drawCircle(center, radius, color, ctx) {
         
     }
 
@@ -88,17 +85,21 @@ class Renderer {
     // pt2:          object ({x: __, y: __})
     // pt3:          object ({x: __, y: __})
     // color:        array of int [R, G, B, A]
-    // framebuffer:  canvas ctx image data
-    drawBezierCurve(pt0, pt1, pt2, pt3, color, framebuffer) {
+    // ctx:          canvas context
+    drawBezierCurve(pt0, pt1, pt2, pt3, color, ctx) {
         
     }
 
     // pt0:          object ({x: __, y: __})
     // pt1:          object ({x: __, y: __})
     // color:        array of int [R, G, B, A]
-    // framebuffer:  canvas ctx image data
-    drawLine(pt0, pt1, color, framebuffer)
+    // ctx:          canvas context
+    drawLine(pt0, pt1, color, ctx)
     {
-        // code from class here
+        ctx.strokeStyle = 'rgba(' + color[0] + ',' + color[1] + ',' + color[2] + ',' + (color[3]/255.0) + ')';
+        ctx.beginPath();
+        ctx.moveTo(pt0.x, pt0.y);
+        ctx.lineTo(pt1.x, pt1.y);
+        ctx.stroke();
     }
 };
