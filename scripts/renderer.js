@@ -99,19 +99,62 @@ class Renderer {
         let curvePt4 = {x:700, y:225};
         this.drawBezierCurve(curvePt1, curvePt2, curvePt3, curvePt4, [255, 0, 0, 255], ctx);
         if(this.show_points) {
-            this.drawCircle(pt1, 4, [96, 121, 66, 256], ctx);
-            this.drawCircle(pt2, 4, [96, 121, 66, 256], ctx);
-            this.drawCircle(pt3, 4, [96, 121, 66, 256], ctx);
-            this.drawCircle(pt4, 4, [96, 121, 66, 256], ctx);
-            this.drawCircle(pt5, 4, [96, 121, 66, 256], ctx);
-            this.drawCircle(pt6, 4, [96, 121, 66, 256], ctx);
-            this.drawCircle(pt7, 4, [96, 121, 66, 256], ctx);
-            this.drawCircle(pt8, 4, [96, 121, 66, 256], ctx);
-            this.drawCircle(pt9, 4, [96, 121, 66, 256], ctx);
-            this.drawCircle(pt10, 4, [96, 121, 66, 256], ctx);
-            this.drawCircle(pt11, 4, [96, 121, 66, 256], ctx);
+            this.drawPoint(pt1, 4, [96, 121, 66, 256], ctx);
+            this.drawPoint(pt2, 4, [96, 121, 66, 256], ctx);
+            this.drawPoint(pt3, 4, [96, 121, 66, 256], ctx);
+            this.drawPoint(pt4, 4, [96, 121, 66, 256], ctx);
+            this.drawPoint(pt5, 4, [96, 121, 66, 256], ctx);
+            this.drawPoint(pt6, 4, [96, 121, 66, 256], ctx);
+            this.drawPoint(pt7, 4, [96, 121, 66, 256], ctx);
+            this.drawPoint(pt8, 4, [96, 121, 66, 256], ctx);
+            this.drawPoint(pt9, 4, [96, 121, 66, 256], ctx);
+            this.drawPoint(pt10, 4, [96, 121, 66, 256], ctx);
+            this.drawPoint(pt11, 4, [96, 121, 66, 256], ctx);
 
         }
+    }
+
+    drawPoint(center, radius, color, ctx) {
+        let number_of_points = this.num_curve_sections;
+        let degree = 0;
+        // In the case of 4 points; increment = 90
+        let increment = 360 / number_of_points;
+
+        // Radian => Degree
+        // Angle in Radians = degrees * Math.PI / 180
+        // Formula for new points coordinates:
+        // x = center(x) + radius * cos(angle)
+        // y = center(y) + radius * sin(angle)
+
+        // Create a dynamic points object
+        const points = {};
+        let new_x = 0;
+        let new_y = 0;
+        let counter = 0;
+        // Depending on the number of points specified, loop through it and get the correct
+        // x and y coordinates for each points.
+        while(number_of_points > 0) {
+            new_x = center.x + radius * Math.cos((degree * Math.PI) / 180);
+            new_y = center.y + radius * Math.sin((degree * Math.PI) / 180);
+            points[counter] = {x:new_x, y:new_y};
+            degree = degree + increment;
+            counter++;
+            number_of_points--;
+        }
+
+        // Set counter back to 0. In this specific case, counter is the reference to our points objects.
+        // next_counter references the next point.
+        // Loop through the number of points - 1 and connect the points together to form the circle.
+        counter = 0;
+        let next_counter = 1;
+        number_of_points = this.num_curve_sections;
+        while(counter < number_of_points - 1) {
+            this.drawLine(points[counter], points[next_counter], color, ctx);
+            counter++;
+            next_counter++;
+        }
+        // This last line is to connect the very last point with the starting point.
+        this.drawLine(points[counter], points[0], color, ctx);
     }
 
     // left_bottom:  object ({x: __, y: __})
@@ -131,10 +174,10 @@ class Renderer {
 
         // To be done 
         if(this.show_points) {
-            this.drawCircle(left_top, 4, [96, 121, 66, 256], ctx);
-            this.drawCircle(right_bottom, 4, [96, 121, 66, 256], ctx);
-            this.drawCircle(left_bottom, 4, [96, 121, 66, 256], ctx);
-            this.drawCircle(right_top, 4, [96, 121, 66, 256], ctx);
+            this.drawPoint(left_top, 4, [96, 121, 66, 256], ctx);
+            this.drawPoint(right_bottom, 4, [96, 121, 66, 256], ctx);
+            this.drawPoint(left_bottom, 4, [96, 121, 66, 256], ctx);
+            this.drawPoint(right_top, 4, [96, 121, 66, 256], ctx);
         }
     }
 
@@ -177,6 +220,9 @@ class Renderer {
         let next_counter = 1;
         number_of_points = this.num_curve_sections;
         while(counter < number_of_points - 1) {
+            if(this.show_points) {
+                this.drawPoint(points[counter], 4, [96, 121, 66, 256], ctx)
+            }
             this.drawLine(points[counter], points[next_counter], color, ctx);
             counter++;
             next_counter++;
@@ -217,15 +263,15 @@ class Renderer {
         while(counter < number_of_points - 1) {
             this.drawLine(points[counter], points[next_counter], color, ctx);
             if(this.show_points) {
-                this.drawCircle(points[counter], 4, [96, 121, 66, 256], ctx);
-                this.drawCircle(pt1, 4, [256, 121, 256, 256], ctx);
-                this.drawCircle(pt2, 4, [256, 121, 256, 256], ctx);
+                this.drawPoint(points[counter], 4, [96, 121, 66, 256], ctx);
+                this.drawPoint(pt1, 4, [256, 121, 256, 256], ctx);
+                this.drawPoint(pt2, 4, [256, 121, 256, 256], ctx);
             }
             counter++;
             next_counter++;
         }
         if(this.show_points) {
-            this.drawCircle(points[number_of_points - 1], 4, [96, 121, 66, 256], ctx);
+            this.drawPoint(points[number_of_points - 1], 4, [96, 121, 66, 256], ctx);
         }
     }
 
