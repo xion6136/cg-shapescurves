@@ -46,34 +46,50 @@ class Renderer {
 
     // ctx:          canvas context
     drawSlide0(ctx) {
+        // Define left bottom corner of rectangle
         let left_bottom = {x:200, y:200};
+        // Define right top corner of rectangle
         let right_top = {x:600, y:400};
+        // Call the drawRectangle function to draw the rectangle
         this.drawRectangle(left_bottom, right_top, [255, 0, 0, 255], ctx);
     }
 
     // ctx:          canvas context
     drawSlide1(ctx) {
+        // Define center of the circle
         let center = {x:400, y:300};
+        // Define radius of the circle
         let radius = 200;
+        // Call the drawCircle function to draw the circle
         this.drawCircle(center, radius, [255, 0, 0, 255], ctx) 
     }
 
     // ctx:          canvas context
     drawSlide2(ctx) {
+        // Starting point
         let pt0 = {x:200, y:200};
+
         // Control Point 1
         let pt1 = {x:400, y:500};
         // Control Point 2
         let pt2 = {x:600, y:400};
+
+        // Ending points
         let pt3 = {x:700, y:200};
+        // Call the drawBezierCurve function to draw the curve
         this.drawBezierCurve(pt0, pt1, pt2, pt3, [255, 0, 0, 255], ctx);
     }
 
     // ctx:          canvas context
     drawSlide3(ctx) {
+        // Slide 3 is to draw my name.
+
+        // Draw a circle for the "O" in Owen
         let center = {x:100, y:300};
         let radius = 100;
         this.drawCircle(center, radius, [255, 0, 0, 255], ctx)
+
+        // Draw 4 consecutive connecting line for the "W" in Owen
         let pt1 = {x:200, y:350};
         let pt2 = {x:250, y:225};
         this.drawLine(pt1, pt2, [255, 0, 0, 255], ctx);
@@ -83,6 +99,8 @@ class Renderer {
         this.drawLine(pt3, pt4, [255, 0, 0, 255], ctx);
         let pt5 = {x:340, y:350};
         this.drawLine(pt4, pt5, [255, 0, 0, 255], ctx);
+
+        // Draw 4 consecutive connecting line for the "E" in Owen
         let pt6 = {x:370, y:350};
         let pt7 = {x:370, y:225};
         let pt11 = {x:370, y:290};
@@ -93,11 +111,16 @@ class Renderer {
         this.drawLine(pt9, pt11, [255, 0, 0, 255], ctx);
         let pt10 = {x:450, y:225};
         this.drawLine(pt7, pt10, [255, 0, 0, 255], ctx);
+
+        // Draw a bezier curve to make the letter "n" in Owen
         let curvePt1 = {x:500, y:225};
         let curvePt2 = {x:600, y:400};
         let curvePt3 = {x:650, y:375};
         let curvePt4 = {x:700, y:225};
         this.drawBezierCurve(curvePt1, curvePt2, curvePt3, curvePt4, [255, 0, 0, 255], ctx);
+
+        // If the user wants to know the points of the drawn line, then draw all the define
+        // points with a different color. 
         if(this.show_points) {
             this.drawPoint(pt1, 4, [96, 121, 66, 256], ctx);
             this.drawPoint(pt2, 4, [96, 121, 66, 256], ctx);
@@ -114,6 +137,8 @@ class Renderer {
         }
     }
 
+    // Draw the points of the line. Another drawing the circle function
+    // Cannot use draw Circle because it is recursive. 
     drawPoint(center, radius, color, ctx) {
         let number_of_points = this.num_curve_sections;
         let degree = 0;
@@ -172,7 +197,7 @@ class Renderer {
         this.drawLine(right_top, right_bottom, color, ctx);
         this.drawLine(right_bottom, left_bottom, color, ctx);
 
-        // To be done 
+        // Draw the points of the rectangle if specified so
         if(this.show_points) {
             this.drawPoint(left_top, 4, [96, 121, 66, 256], ctx);
             this.drawPoint(right_bottom, 4, [96, 121, 66, 256], ctx);
@@ -270,6 +295,7 @@ class Renderer {
             counter++;
             next_counter++;
         }
+        // Draw the points of the bezier curve if specified so
         if(this.show_points) {
             this.drawPoint(points[number_of_points - 1], 4, [96, 121, 66, 256], ctx);
         }
